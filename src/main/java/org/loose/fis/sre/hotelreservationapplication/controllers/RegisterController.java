@@ -2,9 +2,9 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import org.loose.fis.sre.hotelreservationapplication.services.UserService;
 
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class RegisterController {
 
     @FXML
-    private Text registrationMessage;
+    private Label registrationMessage;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -32,15 +32,18 @@ public class RegisterController {
     @FXML
     public void handleRegisterAction() {
         try {
-            if (usernameField.getText() == "" || passwordField.getText() == "" || (String) role.getValue() == "" || fullNameField.getText() == "" || phoneNumberField.getText() == "") {
+            if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || (String) role.getValue() == null || fullNameField.getText().isEmpty() || phoneNumberField.getText().isEmpty()) {
                 registrationMessage.setText("Please fill in all the fields!");
-            } else {
-                UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue(), fullNameField.getText(), phoneNumberField.getText());
+            } else if (UserService.validatePhoneNumber(phoneNumberField.getText()) == false) {
+                registrationMessage.setText("Invalid phone number!");
+            } else if (UserService.validateFullName(fullNameField.getText()) == false) {
+                registrationMessage.setText("Enter a valid name!");
+            }else {
+                UserService.addUser(usernameField.getText(), UserService.encodePassword(passwordField.getText()), (String) role.getValue(), fullNameField.getText(), phoneNumberField.getText());
                 registrationMessage.setText("Account created successfully!");
             }
         } catch (SQLException e) {
             registrationMessage.setText("Username already exists!");
-            System.out.println(e);
         }
     }
 }
