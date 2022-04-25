@@ -34,13 +34,14 @@ public class RegisterController {
         try {
             if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || (String) role.getValue() == null || fullNameField.getText().isEmpty() || phoneNumberField.getText().isEmpty()) {
                 registrationMessage.setText("Please fill in all the fields!");
-            } else {
+            } else if (UserService.validatePhoneNumber(phoneNumberField.getText()) == false) {
+                registrationMessage.setText("Invalid phone number!");
+            }else {
                 UserService.addUser(usernameField.getText(), UserService.encodePassword(passwordField.getText()), (String) role.getValue(), fullNameField.getText(), phoneNumberField.getText());
                 registrationMessage.setText("Account created successfully!");
             }
         } catch (SQLException e) {
             registrationMessage.setText("Username already exists!");
-            System.out.println(e);
         }
     }
 }

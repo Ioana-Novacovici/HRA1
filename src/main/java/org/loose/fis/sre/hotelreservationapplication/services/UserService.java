@@ -6,6 +6,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserService {
 
@@ -30,6 +32,12 @@ public class UserService {
             e.printStackTrace();
         }
         return encryptedpassword;
+    }
+
+    public static boolean validatePhoneNumber (String phone) {
+        Pattern p = Pattern.compile("^(\\d{3}[- .]?){2}\\d{4}$");
+        Matcher m = p.matcher(phone);
+        return (m.matches());
     }
 
 }
