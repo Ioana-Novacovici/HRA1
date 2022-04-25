@@ -4,6 +4,7 @@ import org.loose.fis.sre.hotelreservationapplication.database.DBConnection;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.regex.Matcher;
@@ -13,8 +14,14 @@ public class UserService {
 
     public static void addUser(String username, String password, String role, String fullName, String phoneNumber) throws SQLException {
 
-        Statement statement = DBConnection.connection.createStatement();
-        statement.executeUpdate("INSERT INTO users (username, password, role, fullName, phoneNumber) VALUES ('" + username + "', '" + password + "', '" + role + "', '" + fullName + "', '" + phoneNumber + "');");
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("INSERT INTO users (username, password, role, fullName, phoneNumber) VALUES (?, ?, ?, ?, ?)");
+        statement.setString(1, username);
+        statement.setString(2, password);
+        statement.setString(3, role);
+        statement.setString(4, fullName);
+        statement.setString(5, phoneNumber);
+        statement.executeUpdate();
     }
 
     public static String encodePassword (String password) {
