@@ -2,9 +2,9 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import org.loose.fis.sre.hotelreservationapplication.services.UserService;
 
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class RegisterController {
 
     @FXML
-    private Text registrationMessage;
+    private Label registrationMessage;
     @FXML
     private PasswordField passwordField;
     @FXML
