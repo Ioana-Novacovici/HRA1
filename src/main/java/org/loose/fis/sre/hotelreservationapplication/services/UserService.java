@@ -40,5 +40,10 @@ public class UserService {
         return (m.matches());
     }
 
+    public static boolean validateFullName (String fullName) {
+        Pattern p = Pattern.compile("^[A-Za-z\\s]{1,}[\\-]{0,1}[A-Za-z\\s]{0,}$");
+        Matcher m = p.matcher(fullName);
+        return (m.matches());
+    }
 }
 

@@ -36,6 +36,8 @@ public class RegisterController {
                 registrationMessage.setText("Please fill in all the fields!");
             } else if (UserService.validatePhoneNumber(phoneNumberField.getText()) == false) {
                 registrationMessage.setText("Invalid phone number!");
+            } else if (UserService.validateFullName(fullNameField.getText()) == false) {
+                registrationMessage.setText("Enter a valid name!");
             }else {
                 UserService.addUser(usernameField.getText(), UserService.encodePassword(passwordField.getText()), (String) role.getValue(), fullNameField.getText(), phoneNumberField.getText());
                 registrationMessage.setText("Account created successfully!");
