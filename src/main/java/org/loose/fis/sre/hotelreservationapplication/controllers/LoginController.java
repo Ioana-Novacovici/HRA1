@@ -29,7 +29,17 @@ public class LoginController {
 
     @FXML
     public void handleLoginAction() {
-
+        try {
+            if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || (String) role.getValue() == null) {
+                loginMessage.setText("Please fill in all the fields!");
+            } else if (UserService.searchUser(usernameField.getText(), UserService.encodePassword(passwordField.getText()), (String) role.getValue()) == true){
+                loginMessage.setText("Logged in as: " + (String)role.getValue()); //switch scene-later...
+            } else {
+                loginMessage.setText("Invalid username or password!");
+            }
+        } catch (SQLException e) {
+            loginMessage.setText("Something went wrong! Please try again.");
+        }
     }
 
     @FXML
