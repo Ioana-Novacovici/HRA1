@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: DEB887; -fx-max-width: 615; -fx-min-width: 615; -fx-pref-width: 615; -fx-min-height: 410; -fx-max-height: 410; -fx-pref-height: 410;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: DEB887; -fx-max-width: 615; -fx-min-width: 615; -fx-pref-width: 615; -fx-min-height: 410; -fx-max-height: 410; -fx-pref-height: 410;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.hotelreservationapplication.controllers.LoginController">
     <left>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
@@ -54,12 +54,12 @@
                 </Label>
                 <PasswordField fx:id="passwordField" layoutX="142.0" layoutY="215.0" promptText="Password" />
                 <ChoiceBox fx:id="role" layoutX="141.0" layoutY="254.0" prefWidth="150.0" />
-                <Button layoutX="186.0" layoutY="346.0" mnemonicParsing="false"   prefHeight="31.0" prefWidth="105.0" style="-fx-background-color: #36a420; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" text="Register now!" textFill="#f4f2f2">
+                <Button layoutX="186.0" layoutY="346.0" mnemonicParsing="false" onAction="#goRegisterAction" prefHeight="31.0" prefWidth="105.0" style="-fx-background-color: #36a420; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" text="Register now!" textFill="#f4f2f2">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button layoutX="36.0" layoutY="298.0" mnemonicParsing="false"   prefHeight="26.0" prefWidth="255.0" style="-fx-alignment: center; -fx-background-color: #166fe5; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" text="Log In" textFill="#f7f7f7">
+                <Button layoutX="36.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleLoginAction" prefHeight="26.0" prefWidth="255.0" style="-fx-alignment: center; -fx-background-color: #166fe5; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" text="Log In" textFill="#f7f7f7">
                     <font>
                         <Font size="14.0" />
                     </font>
