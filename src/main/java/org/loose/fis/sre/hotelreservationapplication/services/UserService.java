@@ -5,6 +5,7 @@ import org.loose.fis.sre.hotelreservationapplication.database.DBConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.regex.Matcher;
@@ -22,6 +23,17 @@ public class UserService {
         statement.setString(4, fullName);
         statement.setString(5, phoneNumber);
         statement.executeUpdate();
+    }
+
+    public static boolean searchUser(String username, String password, String role) throws SQLException {
+
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT * from users where  username = ? and password = ? and role = ? ");
+        statement.setString(1, username);
+        statement.setString(2, password);
+        statement.setString(3, role);
+        ResultSet user = statement.executeQuery();
+        return user.next();
     }
 
     public static String encodePassword (String password) {
