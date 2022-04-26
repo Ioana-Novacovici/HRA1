@@ -44,7 +44,10 @@ public class LoginController {
 
     @FXML
     public void goRegisterAction(){
-
+        try{
+            Main m = new Main();
+            m.switchScene("register.fxml");
+        }catch (IOException e){}
     }
 
 }

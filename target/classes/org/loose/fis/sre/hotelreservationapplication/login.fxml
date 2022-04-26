@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: DEB887; -fx-max-width: 615; -fx-min-width: 615; -fx-pref-width: 615; -fx-min-height: 410; -fx-max-height: 410; -fx-pref-height: 410;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.hotelreservationapplication.controllers.LoginController">
+    <left>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="427.0" fitWidth="280.0" layoutX="-12.0" layoutY="-4.0">
+                    <image>
+                        <Image url="@images/hotel.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="391.0" prefWidth="325.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="97.0" fitWidth="96.0" layoutX="116.0" layoutY="54.0">
+                    <image>
+                        <Image url="@images/loginLock.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="28.0" layoutY="172.0" text="Username">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="30.0" layoutY="214.0" text="Password">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="32.0" layoutY="253.0" text="Role">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="usernameField" layoutX="141.0" layoutY="173.0" promptText="Username" />
+                <Label layoutX="-1.0" layoutY="28.0" prefHeight="35.0" prefWidth="316.0" text="Hotel Timișoara Login Page">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="passwordField" layoutX="142.0" layoutY="215.0" promptText="Password" />
+                <ChoiceBox fx:id="role" layoutX="141.0" layoutY="254.0" prefWidth="150.0" />
+                <Button layoutX="186.0" layoutY="346.0" mnemonicParsing="false" onAction="#goRegisterAction" prefHeight="31.0" prefWidth="105.0" style="-fx-background-color: #36a420; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" text="Register now!" textFill="#f4f2f2">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button layoutX="36.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleLoginAction" prefHeight="26.0" prefWidth="255.0" style="-fx-alignment: center; -fx-background-color: #166fe5; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" text="Log In" textFill="#f7f7f7">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Label fx:id="loginMessage" alignment="CENTER" layoutX="21.0" layoutY="142.0" prefHeight="18.0" prefWidth="271.0" textFill="RED" />
+            </children>
+        </AnchorPane>
+    </right>
+</BorderPane>
+
