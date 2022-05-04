@@ -5,6 +5,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.loose.fis.sre.hotelreservationapplication.Main;
 import org.loose.fis.sre.hotelreservationapplication.services.UserService;
 
 import java.sql.SQLException;
@@ -41,6 +42,9 @@ public class RegisterController {
             }else {
                 UserService.addUser(usernameField.getText(), UserService.encodePassword(passwordField.getText()), (String) role.getValue(), fullNameField.getText(), phoneNumberField.getText());
                 registrationMessage.setText("Account created successfully!");
+                if(((String) role.getValue()).equals("Manager")){
+                    Main.changeToScene("reservations.fxml");
+                }
             }
         } catch (SQLException e) {
             registrationMessage.setText("Username already exists!");
