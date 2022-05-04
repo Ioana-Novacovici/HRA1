@@ -1,7 +1,13 @@
 package org.loose.fis.sre.hotelreservationapplication.controllers;
 
-public class ReservationsControler {
+import javafx.fxml.FXML;
+import org.loose.fis.sre.hotelreservationapplication.Main;
 
-    
+public class ReservationsControler {
+    @FXML
+    public void goToFutureReservations(){
+        Main.changeToScene("futureReservations.fxml");
+    }
+
 
 }
