@@ -27,7 +27,7 @@ public class OneRoomController {
         nrPers.setText(String.valueOf(room.getNrPers()));
         price.setText(String.valueOf(room.getPrice()));
         type.setText(room.getType());
-        String imgAddress = "C:\\Users\\Sonia\\OneDrive - Universitatea Politehnica Timisoara\\AN II\\Sem II\\FIS\\HotelReservationApplication\\src\\main\\resources\\org\\loose\\fis\\sre\\hotelreservationapplication\\images\\apartament.jpg";
+        String imgAddress = room.getImg();
         Image image = new Image(imgAddress);
         roomImg.setImage(image);
     }
