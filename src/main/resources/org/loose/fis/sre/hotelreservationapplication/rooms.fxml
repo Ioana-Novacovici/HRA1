@@ -5,13 +5,13 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.hotelreservationapplication.controllers.RoomsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.hotelreservationapplication.controllers.RoomsController">
    <children>
       <BorderPane layoutY="-7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
@@ -22,20 +22,20 @@
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="81.0" prefWidth="400.0" text="Hotel Timișoara - Rooms" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="25.0" />
+                        <Font name="System Bold" size="32.0" />
                      </font>
                   </Label>
                   <HBox prefHeight="353.0" prefWidth="400.0">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="400.0" style="-fx-opacity: 0;">
+                        <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #DEB887;">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                            <content>
-                              <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
+                              <GridPane fx:id="grid" prefHeight="2.0" prefWidth="2.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
                               </GridPane>
                            </content>
                         </ScrollPane>

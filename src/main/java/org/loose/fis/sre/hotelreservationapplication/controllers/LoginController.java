@@ -34,6 +34,12 @@ public class LoginController {
                 loginMessage.setText("Please fill in all the fields!");
             } else if (UserService.searchUser(usernameField.getText(), UserService.encodePassword(passwordField.getText()), (String) role.getValue()) == true){
                 loginMessage.setText("Logged in as: " + (String)role.getValue()); //switch scene-later...
+                try{
+                    Main m = new Main();
+                    m.switchScene("rooms.fxml");
+                }catch (IOException e){
+                    System.out.println(e);
+                }
             } else {
                 loginMessage.setText("Invalid username or password!");
             }
