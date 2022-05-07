@@ -40,6 +40,7 @@ public class RoomsController {
                 room.setType(rooms.getString(1));
                 room.setNrPers(rooms.getInt(2));
                 room.setPrice(rooms.getInt(3));
+                room.setImg(rooms.getString(5));
                 OneRoomController oneRoomController = fxmlLoader.getController();
                 oneRoomController.setData(room);
                 grid.add(anchorPane, 0, row++); //(child,column,row)

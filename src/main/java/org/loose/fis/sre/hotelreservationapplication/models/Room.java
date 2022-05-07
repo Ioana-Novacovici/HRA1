@@ -8,12 +8,14 @@ public class Room {
     private int nrPers;
     private int price;
     private int nrRooms;
+    private String img;
 
-    public Room(String type, int nrPers, int price, int nrRooms) {
+    public Room(String type, int nrPers, int price, int nrRooms, String img) {
         this.type = type;
         this.nrPers = nrPers;
         this.price = price;
         this.nrRooms = nrRooms;
+        this.img = img;
     }
 
     public Room() {
@@ -51,16 +53,22 @@ public class Room {
         this.nrRooms = nrRooms;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {this.img = img;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Room)) return false;
         Room room = (Room) o;
-        return getNrPers() == room.getNrPers() && getPrice() == room.getPrice() && getNrRooms() == room.getNrRooms() && getType().equals(room.getType());
+        return getNrPers() == room.getNrPers() && getPrice() == room.getPrice() && getNrRooms() == room.getNrRooms() && getType().equals(room.getType()) && getImg().equals(room.getImg());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getType(), getNrPers(), getPrice(), getNrRooms());
+        return Objects.hash(getType(), getNrPers(), getPrice(), getNrRooms(), getImg());
     }
 }
