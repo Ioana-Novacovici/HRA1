@@ -2,6 +2,7 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.loose.fis.sre.hotelreservationapplication.Main;
 import org.loose.fis.sre.hotelreservationapplication.services.ReservationService;
 
 import java.sql.SQLException;
@@ -39,6 +40,11 @@ public class AddReservationController {
     @FXML
     public void initialize() {
         typeOfRoom.getItems().addAll("Single Room", "Double Room", "Triple Room", "Family Room", "Apartament");
+    }
+
+    @FXML
+    public void goBack(){
+        Main.changeToScene("futureReservations.fxml");
     }
 
     @FXML
