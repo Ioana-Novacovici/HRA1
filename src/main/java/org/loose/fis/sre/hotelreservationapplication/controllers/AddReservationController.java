@@ -47,6 +47,9 @@ public class AddReservationController {
             if (usernameField.getText().isEmpty() || checkInDate.getValue() == null || checkOutDate.getValue() == null || typeOfRoom.getValue() == null){
                 errorMessage.setText("Please fill in all the fields!");
                 successMessage.setText("");
+            }else if(ReservationService.validateUser(usernameField.getText()) == false){
+                errorMessage.setText("Username does not exist!");
+                successMessage.setText("");
             }else {
                 java.sql.Date date1 = java.sql.Date.valueOf(checkInDate.getValue());
                 java.sql.Date date2 = java.sql.Date.valueOf(checkOutDate.getValue());

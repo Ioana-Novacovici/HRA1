@@ -6,6 +6,7 @@ import java.sql.Date;
 
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ReservationService {
@@ -22,5 +23,14 @@ public class ReservationService {
         statement.setString(6, String.valueOf(breakfast));
         statement.setString(7, String.valueOf(parking));
         statement.executeUpdate();
+    }
+
+    public static boolean validateUser(String username) throws SQLException {
+
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT * from users where  username = ?");
+        statement.setString(1, username);
+        ResultSet user = statement.executeQuery();
+        return user.next();
     }
 }
