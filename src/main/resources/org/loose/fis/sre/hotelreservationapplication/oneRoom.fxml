@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="152.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.hotelreservationapplication.controllers.OneRoomController">
+   <children>
+      <HBox prefHeight="150.0" prefWidth="380.0" style="-fx-background-color: ffba70;">
+         <children>
+            <VBox prefHeight="152.0" prefWidth="265.0">
+               <children>
+                  <Label fx:id="type" contentDisplay="CENTER" prefHeight="60.0" prefWidth="238.0" text="Double Room">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="46.0" prefWidth="267.0">
+                     <children>
+                        <Label text="Number of persons:" textFill="#805241">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="nrPers" prefHeight="27.0" prefWidth="39.0" textFill="#a9380e">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="47.0" prefWidth="283.0">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="106.0" text="Price/night:" textFill="#805241">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="price" prefHeight="27.0" prefWidth="36.0" textFill="#a9380e">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" prefWidth="54.0" text="RON" textFill="#a9380e">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fx:id="roomImg" fitHeight="130.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@images/doubleroom.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
