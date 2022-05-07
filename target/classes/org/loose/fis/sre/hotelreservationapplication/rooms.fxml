@@ -15,10 +15,10 @@
    <children>
       <BorderPane layoutY="-7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
-            <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffba70;" BorderPane.alignment="CENTER" />
+            <VBox prefHeight="400.0" prefWidth="180.0" style="-fx-background-color: d86e3a;" BorderPane.alignment="CENTER" />
          </right>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: DEB887;" BorderPane.alignment="CENTER">
+            <VBox prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: DEB887;" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="81.0" prefWidth="400.0" text="Hotel Timișoara - Rooms" textAlignment="CENTER">
                      <font>
@@ -27,9 +27,9 @@
                   </Label>
                   <HBox prefHeight="353.0" prefWidth="400.0">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #DEB887;">
+                        <ScrollPane fx:id="scroll" prefHeight="336.0" prefWidth="420.0" style="-fx-background: DEB887;">
                            <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
+                              <Insets />
                            </HBox.margin>
                            <content>
                               <GridPane fx:id="grid" prefHeight="2.0" prefWidth="2.0">
