@@ -33,6 +33,13 @@ public class Main extends Application {
         stg.getScene().setRoot(pane);
     }
 
+    public static void changeToScene(String fxml){
+        try{
+            Main m = new Main();
+            m.switchScene(fxml);
+        }catch (IOException e){}
+    }
+
     public static void main(String[] args) {
         DBConnection.connect();
         launch();

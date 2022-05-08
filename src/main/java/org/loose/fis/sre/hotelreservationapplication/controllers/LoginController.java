@@ -33,13 +33,13 @@ public class LoginController {
             if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || (String) role.getValue() == null) {
                 loginMessage.setText("Please fill in all the fields!");
             } else if (UserService.searchUser(usernameField.getText(), UserService.encodePassword(passwordField.getText()), (String) role.getValue()) == true){
-                if(((String) role.getValue()).equals("Client")) {
-                    try{
-                        Main m = new Main();
-                        m.switchScene("rooms.fxml");
-                    }catch (IOException e){
-                        System.out.println(e);
-                    }
+                loginMessage.setText("Logged in as: " + (String)role.getValue());
+                //switch scene-later...
+                if(((String) role.getValue()).equals("Manager")){
+                    Main.changeToScene("reservations.fxml");
+                }
+                else if(((String) role.getValue()).equals("Client")) {
+                    Main.changeToScene("rooms.fxml");
                 }
             } else {
                 loginMessage.setText("Invalid username or password!");
@@ -51,10 +51,7 @@ public class LoginController {
 
     @FXML
     public void goRegisterAction(){
-        try{
-            Main m = new Main();
-            m.switchScene("register.fxml");
-        }catch (IOException e){}
+        Main.changeToScene("register.fxml");
     }
 
 }
