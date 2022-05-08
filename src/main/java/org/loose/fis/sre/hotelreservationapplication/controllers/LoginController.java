@@ -38,7 +38,9 @@ public class LoginController {
                 if(((String) role.getValue()).equals("Manager")){
                     Main.changeToScene("reservations.fxml");
                 }
-
+                else if(((String) role.getValue()).equals("Client")) {
+                    Main.changeToScene("rooms.fxml");
+                }
             } else {
                 loginMessage.setText("Invalid username or password!");
             }

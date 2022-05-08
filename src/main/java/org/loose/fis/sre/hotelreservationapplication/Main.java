@@ -6,8 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.loose.fis.sre.hotelreservationapplication.database.DBConnection;
+import org.loose.fis.sre.hotelreservationapplication.services.RoomService;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Main extends Application {
 
