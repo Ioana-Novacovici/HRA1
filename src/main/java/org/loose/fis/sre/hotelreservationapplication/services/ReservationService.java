@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class ReservationService {
 
@@ -33,4 +34,13 @@ public class ReservationService {
         ResultSet user = statement.executeQuery();
         return user.next();
     }
+
+    public static boolean validateDates(LocalDate checkIn, LocalDate checkOut) throws SQLException {
+
+        LocalDate today = LocalDate.now();
+        if (!checkIn.isBefore(checkOut) || !checkIn.isAfter(today) || !checkOut.isAfter(today))
+            return false;
+        return true;
+    }
+
 }
