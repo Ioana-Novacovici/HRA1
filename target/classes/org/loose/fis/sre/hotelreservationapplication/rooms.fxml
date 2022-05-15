@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +19,58 @@
    <children>
       <BorderPane layoutY="-7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
-            <VBox prefHeight="400.0" prefWidth="180.0" style="-fx-background-color: d86e3a;" BorderPane.alignment="CENTER" />
+            <VBox prefHeight="400.0" prefWidth="180.0" style="-fx-background-color: d86e3a;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#logOut" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: #228B22; -fx-background-radius: 20; -fx-font-size: 1.3em; -fx-border-radius: 20; -fx-border-color: white;" text="Log out" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets left="40.0" right="10.0" top="25.0" />
+                     </VBox.margin>
+                  </Button>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.9;">
+                     <VBox.margin>
+                        <Insets left="50.0" top="15.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@images/bed.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="27.0" prefWidth="112.0" text="Check in">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="checkInDate" prefHeight="23.0" prefWidth="143.0" promptText="check in date">
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <Label text="Check out">
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="checkOutDate" prefHeight="23.0" prefWidth="143.0" promptText="check out date">
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="153.0">
+                     <VBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#checkingAvailability" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #166fe5; -fx-background-radius: 5; -fx-font-size: 1.3em; -fx-border-radius: 5; -fx-border-color: white;" text="Check availability" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets left="20.0" top="15.0" />
+                     </VBox.margin>
+                  </Button>
+               </children></VBox>
          </right>
          <center>
             <VBox prefHeight="400.0" prefWidth="420.0" style="-fx-background-color: DEB887;" BorderPane.alignment="CENTER">

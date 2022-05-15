@@ -5,18 +5,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import org.loose.fis.sre.hotelreservationapplication.Main;
 import org.loose.fis.sre.hotelreservationapplication.models.Room;
+import org.loose.fis.sre.hotelreservationapplication.services.ReservationService;
 import org.loose.fis.sre.hotelreservationapplication.services.RoomService;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class RoomsController {
@@ -26,6 +34,15 @@ public class RoomsController {
 
     @FXML
     private ScrollPane scroll;
+
+    @FXML
+    private DatePicker checkInDate;
+
+    @FXML
+    private DatePicker checkOutDate;
+
+    @FXML
+    private Label errorMessage;
 
     @FXML
     public void initialize() {
@@ -53,5 +70,33 @@ public class RoomsController {
         }
 
     }
+
+    @FXML
+    public void checkingAvailability() {
+
+        try{
+            //validare date
+            LocalDate date1 = checkInDate.getValue();
+            LocalDate date2 = checkOutDate.getValue();
+
+            if(checkOutDate.getValue() == null || checkInDate.getValue() == null) {
+                errorMessage.setTextFill(Color.RED);
+                errorMessage.setText("Please fill in all the fields!");
+            } else if(ReservationService.validateDates(date1, date2) == false) {
+                errorMessage.setTextFill(Color.RED);
+                errorMessage.setText("Invalid dates");
+            } else {
+                Main.changeToScene("makeReservation.fxml");
+            }
+
+        } catch (SQLException e) {
+            errorMessage.setTextFill(Color.RED);
+            errorMessage.setText("Something went wrong! Please try again!");
+        }
+
+    }
+
+    @FXML
+    public void logOut() { Main.changeToScene("login.fxml");}
 
 }
