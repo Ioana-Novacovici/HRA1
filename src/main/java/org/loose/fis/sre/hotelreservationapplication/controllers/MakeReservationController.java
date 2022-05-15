@@ -3,6 +3,8 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -17,18 +19,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.HashMap;
 
 public class MakeReservationController {
 
     @FXML
+    private CheckBox breakfastCheck;
+
+    @FXML
     private Label dates;
+
+    @FXML
+    private CheckBox extraBedCheck;
 
     @FXML
     private GridPane grid;
 
     @FXML
+    private CheckBox parkingCheck;
+
+    @FXML
     private ScrollPane scroll;
+
+    @FXML
+    private Label errorMessage;
+
+    @FXML
+    private ComboBox typeOfRoom;
 
     @FXML
     public void initialize() {
@@ -48,7 +66,9 @@ public class MakeReservationController {
                     availableRoomsList.remove(s);
                 }
             }
-            System.out.println(availableRoomsList);
+//            System.out.println(availableRoomsList);
+
+            typeOfRoom.getItems().addAll(availableRoomsList);
 
             int row = 1;
             while(rooms.next()) {
@@ -65,9 +85,9 @@ public class MakeReservationController {
                 grid.add(anchorPane, 0, row++); //(child,column,row)
                 GridPane.setMargin(anchorPane, new Insets(10));
                 if(availableRoomsList.contains(room.getType())) {
-                    anchorPane.setStyle("-fx-background-color: #80de80");
+                    anchorPane.setStyle("-fx-background-color:  #92e892");
                 } else {
-                    anchorPane.setStyle("-fx-background-color: #e06262");
+                    anchorPane.setStyle("-fx-background-color: #e08686");
                 }
             }
 
@@ -78,4 +98,20 @@ public class MakeReservationController {
 
     @FXML
     public void goBack() { Main.changeToScene("rooms.fxml");}
+
+    @FXML
+    void bookNow() {
+        try {
+            if (typeOfRoom.getValue() == null){
+                errorMessage.setText("Please fill in all the fields!");
+            }else {
+                java.sql.Date date1 = java.sql.Date.valueOf(ReservationService.getDate1());
+                java.sql.Date date2 = java.sql.Date.valueOf(ReservationService.getDate2());
+                ReservationService.addReservation("user", date1, date2, "waiting", typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
+            
+            }
+        } catch (SQLException e) {
+            errorMessage.setText("Something went wrong! Please try again!");
+        }
+    }
 }

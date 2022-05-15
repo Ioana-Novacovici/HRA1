@@ -59,7 +59,7 @@ public class AddReservationController {
             }else {
                 java.sql.Date date1 = java.sql.Date.valueOf(checkInDate.getValue());
                 java.sql.Date date2 = java.sql.Date.valueOf(checkOutDate.getValue());
-                ReservationService.addReservation(usernameField.getText(), date1, date2, typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
+                ReservationService.addReservation(usernameField.getText(), date1, date2, "accepted", typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
                 errorMessage.setText("");
                 successMessage.setText("Reservation created successfully!");
 
