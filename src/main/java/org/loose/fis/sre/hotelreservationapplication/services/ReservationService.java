@@ -71,4 +71,14 @@ public class ReservationService {
 
     }
 
+    public static ResultSet getFutureReservations () throws SQLException {
+
+        LocalDate today = LocalDate.now();
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE status = 'accepted' AND  startDate > ?");
+        statement.setString(1, String.valueOf(today));
+        ResultSet reservations = statement.executeQuery();
+        return reservations;
+    }
+
 }

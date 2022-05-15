@@ -2,9 +2,7 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import org.loose.fis.sre.hotelreservationapplication.models.Reservation;
-import org.loose.fis.sre.hotelreservationapplication.models.Room;
 
 public class OneReservationController {
 
@@ -28,11 +26,11 @@ public class OneReservationController {
 
     public void setData(Reservation reservation) {
         idLabel.setText(String.valueOf(reservation.getIdReservation()));
-        userLabel.setText(String.valueOf(reservation.getUsername()));
+        userLabel.setText(reservation.getUsername());
         startDateLabel.setText(String.valueOf(reservation.getStartDate()));
         endDateLabel.setText(String.valueOf(reservation.getEndDate()));
-        statusLabel.setText(String.valueOf(reservation.getStatus()));
-        typeLabel.setText(String.valueOf(reservation.getType()));
+        statusLabel.setText(reservation.getStatus());
+        typeLabel.setText(reservation.getType());
     }
 
 }
