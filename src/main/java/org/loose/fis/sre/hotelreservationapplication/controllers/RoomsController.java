@@ -71,19 +71,10 @@ public class RoomsController {
 
     }
 
-    public LocalDate getDate1(){
-        return checkInDate.getValue();
-    }
-
-    public LocalDate getDate2(){
-        return checkOutDate.getValue();
-    }
-
     @FXML
     public void checkingAvailability() {
 
         try{
-            //verifica availability ...
             //validare date
             LocalDate date1 = checkInDate.getValue();
             LocalDate date2 = checkOutDate.getValue();

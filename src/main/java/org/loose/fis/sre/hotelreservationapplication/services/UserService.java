@@ -13,8 +13,14 @@ import java.util.regex.Pattern;
 
 public class UserService {
 
-    public static void addUser(String username, String password, String role, String fullName, String phoneNumber) throws SQLException {
+    private static String myUser;
 
+    public static String getMyUser() {
+        return myUser;
+    }
+
+    public static void addUser(String username, String password, String role, String fullName, String phoneNumber) throws SQLException {
+        myUser = username;
         PreparedStatement statement;
         statement = DBConnection.connection.prepareStatement("INSERT INTO users (username, password, role, fullName, phoneNumber) VALUES (?, ?, ?, ?, ?)");
         statement.setString(1, username);
@@ -26,7 +32,7 @@ public class UserService {
     }
 
     public static boolean searchUser(String username, String password, String role) throws SQLException {
-
+        myUser = username;
         PreparedStatement statement;
         statement = DBConnection.connection.prepareStatement("SELECT * from users where  username = ? and password = ? and role = ? ");
         statement.setString(1, username);

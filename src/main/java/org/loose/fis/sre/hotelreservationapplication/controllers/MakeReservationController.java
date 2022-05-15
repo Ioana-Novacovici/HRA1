@@ -13,6 +13,7 @@ import org.loose.fis.sre.hotelreservationapplication.Main;
 import org.loose.fis.sre.hotelreservationapplication.models.Room;
 import org.loose.fis.sre.hotelreservationapplication.services.ReservationService;
 import org.loose.fis.sre.hotelreservationapplication.services.RoomService;
+import org.loose.fis.sre.hotelreservationapplication.services.UserService;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -62,11 +63,10 @@ public class MakeReservationController {
             availableRoomsList.add("Apartment");
 
             for(String s: roomsMap.keySet()) {
-                if(roomsMap.get(s) >= 3) {
+                if(roomsMap.get(s) >= 10) {
                     availableRoomsList.remove(s);
                 }
             }
-//            System.out.println(availableRoomsList);
 
             typeOfRoom.getItems().addAll(availableRoomsList);
 
@@ -103,12 +103,12 @@ public class MakeReservationController {
     void bookNow() {
         try {
             if (typeOfRoom.getValue() == null){
-                errorMessage.setText("Please fill in all the fields!");
+                errorMessage.setText("Please select the room you want!");
             }else {
                 java.sql.Date date1 = java.sql.Date.valueOf(ReservationService.getDate1());
                 java.sql.Date date2 = java.sql.Date.valueOf(ReservationService.getDate2());
-                ReservationService.addReservation("user", date1, date2, "waiting", typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
-            
+                ReservationService.addReservation(UserService.getMyUser(), date1, date2, "waiting", typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
+                Main.changeToScene("rooms.fxml");
             }
         } catch (SQLException e) {
             errorMessage.setText("Something went wrong! Please try again!");
