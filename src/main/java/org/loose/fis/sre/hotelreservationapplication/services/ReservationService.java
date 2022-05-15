@@ -12,6 +12,16 @@ import java.time.LocalDate;
 
 public class ReservationService {
 
+    private static LocalDate date1, date2;
+
+    public static LocalDate getDate1() {
+        return date1;
+    }
+
+    public static LocalDate getDate2() {
+        return date2;
+    }
+
     public static void addReservation(String username, Date startDate, Date endDate, String type, boolean extraBed, boolean breakfast, boolean parking) throws SQLException {
 
         PreparedStatement statement;
@@ -40,7 +50,11 @@ public class ReservationService {
         LocalDate today = LocalDate.now();
         if (!checkIn.isBefore(checkOut) || !checkIn.isAfter(today) || !checkOut.isAfter(today))
             return false;
+        date1 = checkIn;
+        date2 = checkOut;
         return true;
     }
+
+
 
 }

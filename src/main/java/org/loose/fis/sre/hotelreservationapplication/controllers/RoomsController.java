@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -70,6 +71,14 @@ public class RoomsController {
 
     }
 
+    public LocalDate getDate1(){
+        return checkInDate.getValue();
+    }
+
+    public LocalDate getDate2(){
+        return checkOutDate.getValue();
+    }
+
     @FXML
     public void checkingAvailability() {
 
@@ -82,14 +91,13 @@ public class RoomsController {
             if(checkOutDate.getValue() == null || checkInDate.getValue() == null) {
                 errorMessage.setTextFill(Color.RED);
                 errorMessage.setText("Please fill in all the fields!");
-            } else if(ReservationService.validateDates(date1, date2) == true) {
-                errorMessage.setTextFill(Color.GREEN);
-                errorMessage.setText("Valid dates");
-            } else {
+            } else if(ReservationService.validateDates(date1, date2) == false) {
                 errorMessage.setTextFill(Color.RED);
                 errorMessage.setText("Invalid dates");
+            } else {
+                Main.changeToScene("makeReservation.fxml");
             }
-            //switch scene
+
         } catch (SQLException e) {
             errorMessage.setTextFill(Color.RED);
             errorMessage.setText("Something went wrong! Please try again!");

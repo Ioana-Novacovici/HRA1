@@ -16,4 +16,12 @@ public class RoomService {
         return rooms;
     }
 
+    public static ResultSet getAvailableRooms () throws SQLException {
+
+        PreparedStatement statement;
+        //verificarea datelor introduse cu toate rezervarile
+        statement = DBConnection.connection.prepareStatement("SELECT * from rooms ORDER BY nrPers");
+        ResultSet rooms = statement.executeQuery();
+        return rooms;
+    }
 }
