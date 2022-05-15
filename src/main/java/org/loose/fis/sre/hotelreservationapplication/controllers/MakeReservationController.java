@@ -3,10 +3,7 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.loose.fis.sre.hotelreservationapplication.Main;
@@ -67,8 +64,12 @@ public class MakeReservationController {
                     availableRoomsList.remove(s);
                 }
             }
-
-            typeOfRoom.getItems().addAll(availableRoomsList);
+            if(availableRoomsList.isEmpty()) {
+                typeOfRoom.getItems().clear();
+                typeOfRoom.setPromptText("No available rooms");
+            } else {
+                typeOfRoom.getItems().addAll(availableRoomsList);
+            }
 
             int row = 1;
             while(rooms.next()) {
@@ -109,6 +110,12 @@ public class MakeReservationController {
                 java.sql.Date date2 = java.sql.Date.valueOf(ReservationService.getDate2());
                 ReservationService.addReservation(UserService.getMyUser(), date1, date2, "waiting", typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
                 Main.changeToScene("rooms.fxml");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Hotel Timisoara Reservation");
+                alert.setHeaderText("Reservation status");
+                alert.setContentText("Your reservation was successfully sent. Please wait for a response!");
+                alert.showAndWait();
+
             }
         } catch (SQLException e) {
             errorMessage.setText("Something went wrong! Please try again!");
