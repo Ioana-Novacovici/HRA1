@@ -56,7 +56,7 @@ public class ReservationService {
         return true;
     }
 
-    public static void getNumberOfReservations() throws SQLException{
+    public static HashMap<String, Integer> getNumberOfReservations() throws SQLException{
         HashMap<String, Integer> roomsMap = new HashMap<>();
         PreparedStatement statement;
         statement = DBConnection.connection.prepareStatement("SELECT TYPE, COUNT(idReservation) AS 'rezervari' FROM reservations WHERE not (startDate >= ? or endDate <= ?) and (STATUS = 'accepted' or STATUS = 'waiting') GROUP BY TYPE");
@@ -66,11 +66,7 @@ public class ReservationService {
         while(rooms.next()) {
             roomsMap.put(rooms.getString(1), rooms.getInt(2));
         }
-        for(String s: roomsMap.keySet()) {
-            String key = s.toString();
-            int value = roomsMap.get(s);
-            System.out.println(key + " " + value);
-        }
+        return roomsMap;
 
     }
 

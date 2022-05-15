@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MakeReservationController {
 
@@ -33,7 +35,21 @@ public class MakeReservationController {
         dates.setText(ReservationService.getDate1() + " - " + ReservationService.getDate2());
         try{
             ResultSet rooms = RoomService.getAvailableRooms();
-            ReservationService.getNumberOfReservations();
+            HashMap<String, Integer> roomsMap =  ReservationService.getNumberOfReservations();
+            ArrayList<String> availableRoomsList = new ArrayList<>();
+            availableRoomsList.add("Single Room");
+            availableRoomsList.add("Double Room");
+            availableRoomsList.add("Triple Room");
+            availableRoomsList.add("Family Room");
+            availableRoomsList.add("Apartment");
+
+            for(String s: roomsMap.keySet()) {
+                if(roomsMap.get(s) >= 3) {
+                    availableRoomsList.remove(s);
+                }
+            }
+            System.out.println(availableRoomsList);
+
             int row = 1;
             while(rooms.next()) {
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("oneRoom.fxml"));
@@ -48,7 +64,11 @@ public class MakeReservationController {
 
                 grid.add(anchorPane, 0, row++); //(child,column,row)
                 GridPane.setMargin(anchorPane, new Insets(10));
-
+                if(availableRoomsList.contains(room.getType())) {
+                    anchorPane.setStyle("-fx-background-color: #80de80");
+                } else {
+                    anchorPane.setStyle("-fx-background-color: #e06262");
+                }
             }
 
         }catch (SQLException | IOException e) {
