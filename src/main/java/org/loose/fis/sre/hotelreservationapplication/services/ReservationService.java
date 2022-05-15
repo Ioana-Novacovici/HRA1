@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class ReservationService {
 
@@ -55,6 +56,22 @@ public class ReservationService {
         return true;
     }
 
+    public static void getNumberOfReservations() throws SQLException{
+        HashMap<String, Integer> roomsMap = new HashMap<>();
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT TYPE, COUNT(idReservation) AS 'rezervari' FROM reservations WHERE not (startDate >= ? or endDate <= ?) and (STATUS = 'accepted' or STATUS = 'waiting') GROUP BY TYPE");
+        statement.setString(1, ReservationService.getDate2().toString());
+        statement.setString(2, ReservationService.getDate1().toString());
+        ResultSet rooms = statement.executeQuery();
+        while(rooms.next()) {
+            roomsMap.put(rooms.getString(1), rooms.getInt(2));
+        }
+        for(String s: roomsMap.keySet()) {
+            String key = s.toString();
+            int value = roomsMap.get(s);
+            System.out.println(key + " " + value);
+        }
 
+    }
 
 }

@@ -31,9 +31,9 @@ public class MakeReservationController {
     @FXML
     public void initialize() {
         dates.setText(ReservationService.getDate1() + " - " + ReservationService.getDate2());
-
         try{
             ResultSet rooms = RoomService.getAvailableRooms();
+            ReservationService.getNumberOfReservations();
             int row = 1;
             while(rooms.next()) {
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("oneRoom.fxml"));
@@ -45,9 +45,10 @@ public class MakeReservationController {
                 room.setImg(rooms.getString(5));
                 OneRoomController oneRoomController = fxmlLoader.getController();
                 oneRoomController.setData(room);
-                grid.add(anchorPane, 0, row++); //(child,column,row)
 
+                grid.add(anchorPane, 0, row++); //(child,column,row)
                 GridPane.setMargin(anchorPane, new Insets(10));
+
             }
 
         }catch (SQLException | IOException e) {
