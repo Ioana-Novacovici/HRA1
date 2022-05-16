@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ReservationService {
@@ -105,11 +106,28 @@ public class ReservationService {
 
         LocalDate today = LocalDate.now();
         PreparedStatement statement;
-        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE startDate <= ? AND endDate >= ?");
+        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE startDate <= ? AND endDate >= ? AND status = 'accepted'");
         statement.setString(1, String.valueOf(today));
         statement.setString(2, String.valueOf(today));
         ResultSet reservations = statement.executeQuery();
         return reservations;
+    }
+
+    public static boolean checkAvailability(String typeOfRoom) throws SQLException{
+        HashMap<String, Integer> roomsMap =  ReservationService.getNumberOfReservations();
+        ArrayList<String> availableRoomsList = new ArrayList<>();
+        availableRoomsList.add("Single Room");
+        availableRoomsList.add("Double Room");
+        availableRoomsList.add("Triple Room");
+        availableRoomsList.add("Family Room");
+        availableRoomsList.add("Apartment");
+
+        for(String s: roomsMap.keySet()) {
+            if(roomsMap.get(s) >= 10) {
+                availableRoomsList.remove(s);
+            }
+        }
+        return availableRoomsList.contains(typeOfRoom);
     }
 
 }

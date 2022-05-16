@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: DEB887;" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.hotelreservationapplication.controllers.AddReservationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: DEB887;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.hotelreservationapplication.controllers.AddReservationController">
     <top>
         <HBox prefHeight="69.0" prefWidth="600.0" style="-fx-background-color: #d86e3a;" BorderPane.alignment="CENTER">
             <children>
@@ -96,9 +96,8 @@
             <CheckBox fx:id="extraBedCheck" layoutX="154.0" layoutY="99.0" mnemonicParsing="false" />
             <CheckBox fx:id="breakfastCheck" layoutX="154.0" layoutY="146.0" mnemonicParsing="false" />
             <CheckBox fx:id="parkingCheck" layoutX="154.0" layoutY="192.0" mnemonicParsing="false" />
-            <Label fx:id="errorMessage" layoutX="232.0" layoutY="217.0" prefHeight="22.0" prefWidth="323.0" textFill="RED" />
+            <Label fx:id="Message" layoutX="232.0" layoutY="227.0" prefHeight="29.0" prefWidth="323.0" textFill="RED" />
             <ChoiceBox fx:id="typeOfRoom" layoutX="379.0" layoutY="179.0" prefHeight="26.0" prefWidth="175.0" />
-            <Label fx:id="successMessage" layoutX="232.0" layoutY="249.0" prefHeight="22.0" prefWidth="323.0" textFill="#36a420" />
          </children>
       </AnchorPane>
    </center>
