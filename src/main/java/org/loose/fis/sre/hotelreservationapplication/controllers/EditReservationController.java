@@ -76,7 +76,11 @@ public class EditReservationController {
             }else {
                 java.sql.Date date1 = java.sql.Date.valueOf(checkInDate.getValue());
                 java.sql.Date date2 = java.sql.Date.valueOf(checkOutDate.getValue());
-                ReservationService.updateReservation((Integer) reservationID.getValue(), date1, date2, typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
+
+                int daysBetween = ReservationService.daysBetween(dateStart, dateEnd);
+                int totalPrice = ReservationService.getPrice(typeOfRoom.getValue().toString(), daysBetween, extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
+
+                ReservationService.updateReservation((Integer) reservationID.getValue(), date1, date2, typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected(), totalPrice);
                 Message.setTextFill(Color.GREEN);
                 Message.setText("Reservation updated successfully!");
 

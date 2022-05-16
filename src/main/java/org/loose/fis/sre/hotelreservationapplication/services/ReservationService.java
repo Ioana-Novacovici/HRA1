@@ -26,10 +26,10 @@ public class ReservationService {
         return date2;
     }
 
-    public static void addReservation(String username, Date startDate, Date endDate, String status, String type, boolean extraBed, boolean breakfast, boolean parking) throws SQLException {
+    public static void addReservation(String username, Date startDate, Date endDate, String status, String type, boolean extraBed, boolean breakfast, boolean parking, int totPrice) throws SQLException {
 
         PreparedStatement statement;
-        statement = DBConnection.connection.prepareStatement("INSERT INTO reservations (username, startDate, endDate, status, type, extraBed, breakfast, parking) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        statement = DBConnection.connection.prepareStatement("INSERT INTO reservations (username, startDate, endDate, status, type, extraBed, breakfast, parking, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         statement.setString(1, username);
         statement.setDate(2, startDate);
         statement.setDate(3, endDate);
@@ -38,6 +38,7 @@ public class ReservationService {
         statement.setString(6, String.valueOf(extraBed));
         statement.setString(7, String.valueOf(breakfast));
         statement.setString(8, String.valueOf(parking));
+        statement.setInt(9, totPrice);
         statement.executeUpdate();
     }
 
@@ -161,17 +162,18 @@ public class ReservationService {
         return futureIDs;
     }
 
-    public static void updateReservation(Integer ReservationID, Date startDate, Date endDate, String type, boolean extraBed, boolean breakfast, boolean parking) throws SQLException {
+    public static void updateReservation(Integer ReservationID, Date startDate, Date endDate, String type, boolean extraBed, boolean breakfast, boolean parking, int totPrice) throws SQLException {
 
         PreparedStatement statement;
-        statement = DBConnection.connection.prepareStatement("UPDATE reservations SET startDate=?, endDate=?, type=?, extraBed=?, breakfast=?, parking=? WHERE idReservation=? ");
+        statement = DBConnection.connection.prepareStatement("UPDATE reservations SET startDate=?, endDate=?, type=?, extraBed=?, breakfast=?, parking=?, price=? WHERE idReservation=? ");
         statement.setDate(1, startDate);
         statement.setDate(2, endDate);
         statement.setString(3, type);
         statement.setString(4, String.valueOf(extraBed));
         statement.setString(5, String.valueOf(breakfast));
         statement.setString(6, String.valueOf(parking));
-        statement.setString(7, String.valueOf(ReservationID));
+        statement.setInt(7, totPrice);
+        statement.setString(8, String.valueOf(ReservationID));
         statement.executeUpdate();
     }
 
