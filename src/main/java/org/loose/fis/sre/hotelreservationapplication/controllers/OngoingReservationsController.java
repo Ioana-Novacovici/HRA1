@@ -3,43 +3,30 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.loose.fis.sre.hotelreservationapplication.Main;
 import org.loose.fis.sre.hotelreservationapplication.models.Reservation;
-import org.loose.fis.sre.hotelreservationapplication.models.Room;
 import org.loose.fis.sre.hotelreservationapplication.services.ReservationService;
-import org.loose.fis.sre.hotelreservationapplication.services.RoomService;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class FutureReservationsController {
-
-    @FXML
-    private GridPane grid;
-
-    @FXML
-    private ScrollPane scroll;
-
-    @FXML
-    public void goAddReservation(){
-        Main.changeToScene("addReservation.fxml");
-    }
-
+public class OngoingReservationsController {
     @FXML
     public void goBack(){
         Main.changeToScene("reservations.fxml");
     }
 
+    @FXML
+    private GridPane grid;
 
     @FXML
     public void initialize() {
 
         try{
-            ResultSet reservations = ReservationService.getFutureReservations();
+            ResultSet reservations = ReservationService.getOngoingReservations();
             int row = 1;
             while(reservations.next()) {
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("oneReservation.fxml"));
@@ -61,6 +48,5 @@ public class FutureReservationsController {
             System.out.println(e);
         }
 
-   }
-
+    }
 }

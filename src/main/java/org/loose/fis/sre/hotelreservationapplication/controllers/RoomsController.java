@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import org.loose.fis.sre.hotelreservationapplication.Main;
+import org.loose.fis.sre.hotelreservationapplication.models.Reservation;
 import org.loose.fis.sre.hotelreservationapplication.models.Room;
 import org.loose.fis.sre.hotelreservationapplication.services.ReservationService;
 import org.loose.fis.sre.hotelreservationapplication.services.RoomService;
@@ -61,7 +62,6 @@ public class RoomsController {
                 OneRoomController oneRoomController = fxmlLoader.getController();
                 oneRoomController.setData(room);
                 grid.add(anchorPane, 0, row++); //(child,column,row)
-
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
 

@@ -124,6 +124,22 @@ public class Reservation {
     public int hashCode() {
         return Objects.hash(idReservation, username, startDate, endDate, status, type, extraBed, breakfast, parking, price);
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "idReservation=" + idReservation +
+                ", username='" + username + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", status='" + status + '\'' +
+                ", type='" + type + '\'' +
+                ", extraBed=" + extraBed +
+                ", breakfast=" + breakfast +
+                ", parking=" + parking +
+                ", price=" + price +
+                '}';
+    }
 }
 
 

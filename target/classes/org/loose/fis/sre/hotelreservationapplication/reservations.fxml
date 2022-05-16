@@ -30,10 +30,10 @@
                 </Label>
                 <Label fx:id="registrationMessage" alignment="CENTER" layoutX="25.0" layoutY="119.0" prefHeight="22.0" prefWidth="276.0" textFill="RED" />
 
-            <Button fx:id="reservation" layoutX="25.0" layoutY="86.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Past&#10;reservations" textAlignment="CENTER" />
+            <Button fx:id="reservation" layoutX="25.0" layoutY="86.0" mnemonicParsing="false" onAction="#goToPastReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Past&#10;reservations" textAlignment="CENTER" />
             <Button fx:id="reservation" layoutX="25.0" layoutY="231.0" mnemonicParsing="false" onAction="#goToFutureReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Future&#10;reservations" textAlignment="CENTER" />
-            <Button fx:id="reservation" layoutX="180.0" layoutY="86.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Ongoing&#10;reservations" textAlignment="CENTER" />
-            <Button fx:id="reservation" layoutX="180.0" layoutY="231.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Waiting for&#10;response" textAlignment="CENTER" />
+            <Button fx:id="reservation" layoutX="180.0" layoutY="86.0" mnemonicParsing="false" onAction="#goToOngoingReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Ongoing&#10;reservations" textAlignment="CENTER" />
+            <Button fx:id="reservation" layoutX="180.0" layoutY="231.0" mnemonicParsing="false" onAction="#goToWaitingReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Waiting for&#10;response" textAlignment="CENTER" />
             </children>
         </AnchorPane>
     </center>

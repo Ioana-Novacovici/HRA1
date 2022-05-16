@@ -71,4 +71,45 @@ public class ReservationService {
 
     }
 
+    public static ResultSet getFutureReservations () throws SQLException {
+
+        LocalDate today = LocalDate.now();
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE status = 'accepted' AND  startDate > ?");
+        statement.setString(1, String.valueOf(today));
+        ResultSet reservations = statement.executeQuery();
+        return reservations;
+    }
+
+    public static ResultSet getPastReservations () throws SQLException {
+
+        LocalDate today = LocalDate.now();
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE status = 'rejected' OR  endDate < ?");
+        statement.setString(1, String.valueOf(today));
+        ResultSet reservations = statement.executeQuery();
+        return reservations;
+    }
+
+    public static ResultSet getWaitingReservations () throws SQLException {
+
+        LocalDate today = LocalDate.now();
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE status = 'waiting' AND startDate > ?");
+        statement.setString(1, String.valueOf(today));
+        ResultSet reservations = statement.executeQuery();
+        return reservations;
+    }
+
+    public static ResultSet getOngoingReservations () throws SQLException {
+
+        LocalDate today = LocalDate.now();
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE startDate <= ? AND endDate >= ?");
+        statement.setString(1, String.valueOf(today));
+        statement.setString(2, String.valueOf(today));
+        ResultSet reservations = statement.executeQuery();
+        return reservations;
+    }
+
 }
