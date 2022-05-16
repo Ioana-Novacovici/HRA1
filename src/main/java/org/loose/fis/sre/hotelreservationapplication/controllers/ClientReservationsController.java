@@ -36,17 +36,18 @@ public class ClientReservationsController {
             int row = 1;
             while(reservations.next()) {
                 //trebuie incarcat fxml cu rezervare vazuta de client
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("oneReservation.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("oneClientReservation.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 Reservation reservation = new Reservation();
-                reservation.setIdReservation(reservations.getInt(1));
-                reservation.setUsername(reservations.getString(2));
                 reservation.setStartDate(reservations.getDate(3));
                 reservation.setEndDate(reservations.getDate(4));
-                reservation.setStatus(reservations.getString(5));
                 reservation.setType(reservations.getString(6));
-                OneReservationController oneReservationController = fxmlLoader.getController();
-                oneReservationController.setData(reservation);
+                reservation.setExtraBed(reservations.getBoolean(7));
+                reservation.setBreakfast(reservations.getBoolean(8));
+                reservation.setParking(reservations.getBoolean(9));
+                reservation.setPrice(reservations.getInt(10));
+                OneClientReservationController oneClientReservationController = fxmlLoader.getController();
+                oneClientReservationController.setData(reservation);
                 grid.add(anchorPane, 0, row++);
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
