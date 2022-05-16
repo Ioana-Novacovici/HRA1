@@ -8,8 +8,9 @@ import org.loose.fis.sre.hotelreservationapplication.services.ReservationService
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class AddReservationController {
+public class EditReservationController {
 
     @FXML
     private Label Message;
@@ -30,16 +31,10 @@ public class AddReservationController {
     private CheckBox parkingCheck;
 
     @FXML
+    private ComboBox reservationID;
+
+    @FXML
     private ChoiceBox typeOfRoom;
-
-
-    @FXML
-    private TextField usernameField;
-
-    @FXML
-    public void initialize() {
-        typeOfRoom.getItems().addAll("Single Room", "Double Room", "Triple Room", "Family Room", "Apartment");
-    }
 
     @FXML
     public void goBack(){
@@ -47,16 +42,30 @@ public class AddReservationController {
     }
 
     @FXML
-    public void saveReservation() {
+    public void initialize() {
+        typeOfRoom.getItems().addAll("Single Room", "Double Room", "Triple Room", "Family Room", "Apartment");
+        try{
+            ArrayList<Integer> futureIDS = ReservationService.getFutureReservationsID();
+            if(futureIDS.isEmpty()) {
+                reservationID.getItems().clear();
+                reservationID.setPromptText("No available rooms");
+            } else {
+                reservationID.getItems().addAll(futureIDS);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+
+    }
+
+    @FXML
+    public void updateReservation(){
         try {
             LocalDate dateStart = checkInDate.getValue();
             LocalDate dateEnd = checkOutDate.getValue();
-            if (usernameField.getText().isEmpty() || checkInDate.getValue() == null || checkOutDate.getValue() == null || typeOfRoom.getValue() == null){
+            if (reservationID.getValue() == null || checkInDate.getValue() == null || checkOutDate.getValue() == null || typeOfRoom.getValue() == null){
                 Message.setTextFill(Color.RED);
                 Message.setText("Please fill in all the fields!");
-            }else if(ReservationService.validateUser(usernameField.getText()) == false){
-                Message.setTextFill(Color.RED);
-                Message.setText("Username does not exist!");
             }else if(ReservationService.validateDates(dateStart, dateEnd) == false){
                 Message.setTextFill(Color.RED);
                 Message.setText("Invalid dates!");
@@ -67,9 +76,9 @@ public class AddReservationController {
             }else {
                 java.sql.Date date1 = java.sql.Date.valueOf(checkInDate.getValue());
                 java.sql.Date date2 = java.sql.Date.valueOf(checkOutDate.getValue());
-                ReservationService.addReservation(usernameField.getText(), date1, date2, "accepted", typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
+                ReservationService.updateReservation((Integer) reservationID.getValue(), date1, date2, typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
                 Message.setTextFill(Color.GREEN);
-                Message.setText("Reservation created successfully!");
+                Message.setText("Reservation updated successfully!");
 
             }
         } catch (SQLException e) {
@@ -79,4 +88,3 @@ public class AddReservationController {
     }
 
 }
-

@@ -23,7 +23,7 @@
     <center>
         <AnchorPane prefHeight="410.0" prefWidth="350.0" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="15.0" layoutY="20.0" prefHeight="35.0" prefWidth="329.0" style="-fx-alignment: center;" text="Hotel Timișoara Reservations Page">
+                <Label layoutX="13.0" layoutY="8.0" prefHeight="67.0" prefWidth="330.0" style="-fx-alignment: center;" text="Hotel Timișoara Reservations Page&#10;">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
@@ -31,9 +31,10 @@
                 <Label fx:id="registrationMessage" alignment="CENTER" layoutX="25.0" layoutY="119.0" prefHeight="22.0" prefWidth="276.0" textFill="RED" />
 
             <Button fx:id="reservation" layoutX="25.0" layoutY="86.0" mnemonicParsing="false" onAction="#goToPastReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Past&#10;reservations" textAlignment="CENTER" />
-            <Button fx:id="reservation" layoutX="25.0" layoutY="231.0" mnemonicParsing="false" onAction="#goToFutureReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Future&#10;reservations" textAlignment="CENTER" />
-            <Button fx:id="reservation" layoutX="180.0" layoutY="86.0" mnemonicParsing="false" onAction="#goToOngoingReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Ongoing&#10;reservations" textAlignment="CENTER" />
-            <Button fx:id="reservation" layoutX="180.0" layoutY="231.0" mnemonicParsing="false" onAction="#goToWaitingReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Waiting for&#10;response" textAlignment="CENTER" />
+            <Button fx:id="reservation" layoutX="25.0" layoutY="227.0" mnemonicParsing="false" onAction="#goToFutureReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Future&#10;reservations" textAlignment="CENTER" />
+            <Button fx:id="reservation" layoutX="192.0" layoutY="86.0" mnemonicParsing="false" onAction="#goToOngoingReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Ongoing&#10;reservations" textAlignment="CENTER" />
+            <Button fx:id="reservation" layoutX="192.0" layoutY="227.0" mnemonicParsing="false" onAction="#goToWaitingReservations" prefHeight="110.0" prefWidth="129.0" stylesheets="@style/buttonStyle.css" text="Waiting for&#10;response" textAlignment="CENTER" />
+            <Button layoutX="218.0" layoutY="352.0" mnemonicParsing="false" onAction="#goBack" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #36a420; -fx-background-radius: 20; -fx-font-size: 1.3em; -fx-border-radius: 20; -fx-border-color: white;" text="Log out" />
             </children>
         </AnchorPane>
     </center>

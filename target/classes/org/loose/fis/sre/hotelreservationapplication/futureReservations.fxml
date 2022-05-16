@@ -34,10 +34,15 @@
    <bottom>
       <HBox prefHeight="44.0" prefWidth="600.0" style="-fx-background-color: #d86e3a;" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="51.0" prefWidth="469.0" />
+            <Label prefHeight="44.0" prefWidth="370.0" />
+            <Button mnemonicParsing="false" onAction="#goEditReservation" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 5; -fx-background-color: #228B22; -fx-font-size: 1.3em; -fx-border-radius: 5; -fx-border-color: white;" text="Edit">
+               <HBox.margin>
+                  <Insets right="20.0" top="3.0" />
+               </HBox.margin>
+            </Button>
             <Button mnemonicParsing="false" onAction="#goAddReservation" prefHeight="36.0" prefWidth="109.0" style="-fx-background-radius: 5; -fx-background-color: #166fe5; -fx-font-size: 1.3em; -fx-border-radius: 5; -fx-border-color: white;" text="Add +">
                <HBox.margin>
-                  <Insets bottom="3.0" top="3.0" />
+                  <Insets right="20.0" top="3.0" />
                </HBox.margin>
             </Button>
          </children>

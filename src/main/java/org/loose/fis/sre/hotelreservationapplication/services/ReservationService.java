@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ReservationService {
@@ -105,11 +106,51 @@ public class ReservationService {
 
         LocalDate today = LocalDate.now();
         PreparedStatement statement;
-        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE startDate <= ? AND endDate >= ?");
+        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE startDate <= ? AND endDate >= ? AND status = 'accepted'");
         statement.setString(1, String.valueOf(today));
         statement.setString(2, String.valueOf(today));
         ResultSet reservations = statement.executeQuery();
         return reservations;
+    }
+
+    public static boolean checkAvailability(String typeOfRoom) throws SQLException{
+        HashMap<String, Integer> roomsMap =  ReservationService.getNumberOfReservations();
+        ArrayList<String> availableRoomsList = new ArrayList<>();
+        availableRoomsList.add("Single Room");
+        availableRoomsList.add("Double Room");
+        availableRoomsList.add("Triple Room");
+        availableRoomsList.add("Family Room");
+        availableRoomsList.add("Apartment");
+
+        for(String s: roomsMap.keySet()) {
+            if(roomsMap.get(s) >= 10) {
+                availableRoomsList.remove(s);
+            }
+        }
+        return availableRoomsList.contains(typeOfRoom);
+    }
+
+    public static ArrayList<Integer> getFutureReservationsID() throws SQLException{
+        ArrayList<Integer> futureIDs = new ArrayList<>();
+        ResultSet futureRes = ReservationService.getFutureReservations();
+        while(futureRes.next()) {
+            futureIDs.add(futureRes.getInt(1));
+        }
+        return futureIDs;
+    }
+
+    public static void updateReservation(Integer ReservationID, Date startDate, Date endDate, String type, boolean extraBed, boolean breakfast, boolean parking) throws SQLException {
+
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("UPDATE reservations SET startDate=?, endDate=?, type=?, extraBed=?, breakfast=?, parking=? WHERE idReservation=? ");
+        statement.setDate(1, startDate);
+        statement.setDate(2, endDate);
+        statement.setString(3, type);
+        statement.setString(4, String.valueOf(extraBed));
+        statement.setString(5, String.valueOf(breakfast));
+        statement.setString(6, String.valueOf(parking));
+        statement.setString(7, String.valueOf(ReservationID));
+        statement.executeUpdate();
     }
 
 }
