@@ -130,4 +130,13 @@ public class ReservationService {
         return availableRoomsList.contains(typeOfRoom);
     }
 
+    public static ArrayList<Integer> getFutureReservationsID() throws SQLException{
+        ArrayList<Integer> futureIDs = new ArrayList<>();
+        ResultSet futureRes = ReservationService.getFutureReservations();
+        while(futureRes.next()) {
+            futureIDs.add(futureRes.getInt(1));
+        }
+        return futureIDs;
+    }
+
 }

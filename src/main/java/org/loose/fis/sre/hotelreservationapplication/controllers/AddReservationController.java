@@ -38,7 +38,7 @@ public class AddReservationController {
 
     @FXML
     public void initialize() {
-        typeOfRoom.getItems().addAll("Single Room", "Double Room", "Triple Room", "Family Room", "Apartament");
+        typeOfRoom.getItems().addAll("Single Room", "Double Room", "Triple Room", "Family Room", "Apartment");
     }
 
     @FXML

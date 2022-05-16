@@ -97,7 +97,7 @@
                 <CheckBox fx:id="parkingCheck" layoutX="154.0" layoutY="192.0" mnemonicParsing="false" />
                 <Label fx:id="Message" layoutX="232.0" layoutY="227.0" prefHeight="29.0" prefWidth="323.0" textFill="RED" />
                 <ChoiceBox fx:id="typeOfRoom" layoutX="379.0" layoutY="179.0" prefHeight="26.0" prefWidth="175.0" />
-            <ComboBox layoutX="378.0" layoutY="37.0" prefHeight="26.0" prefWidth="176.0" />
+            <ComboBox fx:id="reservationID" layoutX="378.0" layoutY="37.0" prefHeight="26.0" prefWidth="176.0" />
             </children>
         </AnchorPane>
     </center>
