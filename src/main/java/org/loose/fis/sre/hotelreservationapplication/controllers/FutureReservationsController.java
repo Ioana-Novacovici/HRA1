@@ -30,6 +30,11 @@ public class FutureReservationsController {
     }
 
     @FXML
+    public void goEditReservation(){
+        Main.changeToScene("editReservation.fxml");
+    }
+
+    @FXML
     public void goBack(){
         Main.changeToScene("reservations.fxml");
     }
