@@ -99,4 +99,7 @@ public class RoomsController {
     @FXML
     public void logOut() { Main.changeToScene("login.fxml");}
 
+    @FXML
+    void goToMyReservations() {Main.changeToScene("clientReservations.fxml");}
+
 }
