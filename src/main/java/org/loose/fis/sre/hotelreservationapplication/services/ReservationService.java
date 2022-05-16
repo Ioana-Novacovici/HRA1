@@ -136,6 +136,14 @@ public class ReservationService {
         return reservations;
     }
 
+    public static ResultSet getClientReservations(String username) throws SQLException{
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE username = ?");
+        statement.setString(1, username);
+        ResultSet reservations = statement.executeQuery();
+        return reservations;
+    }
+
     public static boolean checkAvailability(String typeOfRoom) throws SQLException{
         HashMap<String, Integer> roomsMap =  ReservationService.getNumberOfReservations();
         ArrayList<String> availableRoomsList = new ArrayList<>();
