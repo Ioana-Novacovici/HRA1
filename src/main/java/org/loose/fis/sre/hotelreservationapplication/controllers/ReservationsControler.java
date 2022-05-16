@@ -24,5 +24,6 @@ public class ReservationsControler {
         Main.changeToScene("waitingReservations.fxml");
     }
 
-
+    @FXML
+    void goBack() { Main.changeToScene("login.fxml");}
 }
