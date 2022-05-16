@@ -139,4 +139,18 @@ public class ReservationService {
         return futureIDs;
     }
 
+    public static void updateReservation(Integer ReservationID, Date startDate, Date endDate, String type, boolean extraBed, boolean breakfast, boolean parking) throws SQLException {
+
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("UPDATE reservations SET startDate=?, endDate=?, type=?, extraBed=?, breakfast=?, parking=? WHERE idReservation=? ");
+        statement.setDate(1, startDate);
+        statement.setDate(2, endDate);
+        statement.setString(3, type);
+        statement.setString(4, String.valueOf(extraBed));
+        statement.setString(5, String.valueOf(breakfast));
+        statement.setString(6, String.valueOf(parking));
+        statement.setString(7, String.valueOf(ReservationID));
+        statement.executeUpdate();
+    }
+
 }
