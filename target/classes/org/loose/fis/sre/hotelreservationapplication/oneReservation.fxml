@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="100.0" prefWidth="575.0" style="-fx-background-color: ffba70;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.hotelreservationapplication.controllers.OneReservationController">
+<AnchorPane prefHeight="100.0" prefWidth="575.0" style="-fx-background-color: ffba70;" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.hotelreservationapplication.controllers.OneReservationController">
    <children>
       <Label alignment="CENTER" layoutX="146.0" layoutY="14.0" prefHeight="30.0" prefWidth="91.0" text="Start Date">
          <font>
