@@ -8,7 +8,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,6 +39,26 @@ public class ReservationService {
         statement.setString(7, String.valueOf(breakfast));
         statement.setString(8, String.valueOf(parking));
         statement.executeUpdate();
+    }
+
+    public static int getPrice(String roomType, int days, boolean extraBed, boolean breakfast, boolean parking) throws SQLException{
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("SELECT * from rooms where  type = ?");
+        statement.setString(1, roomType);
+        ResultSet room = statement.executeQuery();
+        room.next();
+        int totalPrice = room.getInt(3) * days;
+        if(extraBed)
+            totalPrice += 50 * days;
+        if(breakfast)
+            totalPrice += 20 * days * room.getInt(2);
+        if(parking)
+            totalPrice += 5 * days;
+        return totalPrice;
+    }
+
+    public static int daysBetween(LocalDate date1, LocalDate date2) {
+        return Period.between(date1, date2).getDays();
     }
 
     public static boolean validateUser(String username) throws SQLException {

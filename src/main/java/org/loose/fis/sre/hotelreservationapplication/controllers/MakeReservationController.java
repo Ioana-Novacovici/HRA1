@@ -21,6 +21,8 @@ import java.sql.Date;
 import java.util.HashMap;
 
 public class MakeReservationController {
+    @FXML
+    private Button bookNowButton;
 
     @FXML
     private CheckBox breakfastCheck;
@@ -67,6 +69,8 @@ public class MakeReservationController {
             if(availableRoomsList.isEmpty()) {
                 typeOfRoom.getItems().clear();
                 typeOfRoom.setPromptText("No available rooms");
+                bookNowButton.setVisible(false);
+                errorMessage.setText("Sold out!");
             } else {
                 typeOfRoom.getItems().addAll(availableRoomsList);
             }
@@ -108,6 +112,9 @@ public class MakeReservationController {
             }else {
                 java.sql.Date date1 = java.sql.Date.valueOf(ReservationService.getDate1());
                 java.sql.Date date2 = java.sql.Date.valueOf(ReservationService.getDate2());
+                int daysBetween = ReservationService.daysBetween(ReservationService.getDate1(), ReservationService.getDate2());
+                int totalPrice = ReservationService.getPrice(typeOfRoom.getValue().toString(), daysBetween, extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
+                System.out.println(daysBetween + " " + totalPrice);
                 ReservationService.addReservation(UserService.getMyUser(), date1, date2, "waiting", typeOfRoom.getValue().toString(), extraBedCheck.isSelected(), breakfastCheck.isSelected(), parkingCheck.isSelected());
                 Main.changeToScene("rooms.fxml");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
