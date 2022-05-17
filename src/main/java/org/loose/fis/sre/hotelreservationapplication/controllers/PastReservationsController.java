@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import org.loose.fis.sre.hotelreservationapplication.Main;
 import org.loose.fis.sre.hotelreservationapplication.models.Reservation;
 import org.loose.fis.sre.hotelreservationapplication.services.ReservationService;
@@ -16,6 +17,7 @@ import org.loose.fis.sre.hotelreservationapplication.services.ReservationService
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PastReservationsController {
     @FXML
@@ -31,11 +33,20 @@ public class PastReservationsController {
     private ComboBox reservationID;
 
     @FXML
-    private ScrollPane scroll;
-
-    @FXML
     void handleDelete() {
-
+        try{
+            if(reservationID.getValue() == null){
+                Message.setTextFill(Color.RED);
+                Message.setText("Select an ID!");
+            }else{
+                ReservationService.deleteReservation((Integer) reservationID.getValue());
+                Message.setTextFill(Color.GREEN);
+                Message.setText("Reservation deleted!");
+            }
+        }catch(SQLException e){
+            Message.setTextFill(Color.RED);
+            Message.setText("Something went wrong!");
+        }
     }
 
     @FXML
@@ -46,6 +57,19 @@ public class PastReservationsController {
 
     @FXML
     public void initialize() {
+
+        try{
+            ArrayList<Integer> pastIDS = ReservationService.getPastReservationsID();
+            if(pastIDS.isEmpty()) {
+                reservationID.getItems().clear();
+                reservationID.setPromptText("No past reservations");
+                deleteButton.setVisible(false);
+            } else {
+                reservationID.getItems().addAll(pastIDS);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
 
         try{
             ResultSet reservations = ReservationService.getPastReservations();
