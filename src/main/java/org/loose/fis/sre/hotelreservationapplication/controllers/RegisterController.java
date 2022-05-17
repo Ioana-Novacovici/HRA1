@@ -32,6 +32,11 @@ public class RegisterController {
     }
 
     @FXML
+    void goBack() {
+        Main.changeToScene("login.fxml");
+    }
+
+    @FXML
     public void handleRegisterAction() {
         try {
             if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || (String) role.getValue() == null || fullNameField.getText().isEmpty() || phoneNumberField.getText().isEmpty()) {

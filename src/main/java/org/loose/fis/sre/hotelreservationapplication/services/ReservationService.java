@@ -210,4 +210,21 @@ public class ReservationService {
         statement.executeUpdate();
     }
 
+    public static ArrayList<Integer> getPastReservationsID() throws SQLException{
+        ArrayList<Integer> pastIDs = new ArrayList<>();
+        ResultSet pastRes = ReservationService.getPastReservations();
+        while(pastRes.next()) {
+            pastIDs.add(pastRes.getInt(1));
+        }
+        return pastIDs;
+    }
+
+    public static void deleteReservation(Integer ReservationID) throws SQLException {
+
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("DELETE FROM reservations WHERE idReservation=? ");
+        statement.setInt(1, ReservationID);
+        statement.executeUpdate();
+    }
+
 }
