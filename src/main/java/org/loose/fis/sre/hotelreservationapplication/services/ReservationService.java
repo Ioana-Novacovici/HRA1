@@ -185,4 +185,13 @@ public class ReservationService {
         statement.executeUpdate();
     }
 
+    public static ArrayList<Integer> getWaitingReservationsID() throws SQLException{
+        ArrayList<Integer> waitingIDs = new ArrayList<>();
+        ResultSet waitingRes = ReservationService.getWaitingReservations();
+        while(waitingRes.next()) {
+            waitingIDs.add(waitingRes.getInt(1));
+        }
+        return waitingIDs;
+    }
+
 }

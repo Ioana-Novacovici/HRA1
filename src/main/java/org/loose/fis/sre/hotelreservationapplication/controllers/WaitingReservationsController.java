@@ -3,6 +3,7 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -13,8 +14,15 @@ import org.loose.fis.sre.hotelreservationapplication.services.ReservationService
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class WaitingReservationsController {
+
+    @FXML
+    private Button acceptButton;
+
+    @FXML
+    private Button rejectButton;
 
     @FXML
     private ComboBox reservationID;
@@ -40,6 +48,21 @@ public class WaitingReservationsController {
 
     @FXML
     public void initialize() {
+
+        try{
+            ArrayList<Integer> waitingIDS = ReservationService.getWaitingReservationsID();
+            if(waitingIDS.isEmpty()) {
+                reservationID.getItems().clear();
+                reservationID.setPromptText("No waiting reservations");
+                acceptButton.setVisible(false);
+                rejectButton.setVisible(false);
+
+            } else {
+                reservationID.getItems().addAll(waitingIDS);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
 
         try{
             ResultSet reservations = ReservationService.getWaitingReservations();
