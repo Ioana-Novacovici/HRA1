@@ -6,6 +6,8 @@ import javafx.scene.paint.Color;
 import org.loose.fis.sre.hotelreservationapplication.models.Reservation;
 
 public class OneClientReservationController {
+    @FXML
+    private Label statusLabel;
 
     @FXML
     private Label breakfastOption;
@@ -47,6 +49,14 @@ public class OneClientReservationController {
         else {
             parkingOption.setTextFill(Color.valueOf("#c10101"));
         }
+        if(reservation.getStatus().equals("accepted")) {
+            statusLabel.setTextFill(Color.valueOf("#14430c"));
+        } else if (reservation.getStatus().equals("rejected")) {
+            statusLabel.setTextFill(Color.valueOf("#c10101"));
+        } else {
+            statusLabel.setTextFill(Color.valueOf("#e4b022"));
+        }
+        statusLabel.setText(reservation.getStatus());
         checkIn.setText(String.valueOf(reservation.getStartDate()));
         checkOut.setText(String.valueOf(reservation.getEndDate()));
         totalPrice.setText(String.valueOf(reservation.getPrice()));

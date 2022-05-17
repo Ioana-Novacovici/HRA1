@@ -3,8 +3,12 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import org.loose.fis.sre.hotelreservationapplication.Main;
 import org.loose.fis.sre.hotelreservationapplication.models.Reservation;
 import org.loose.fis.sre.hotelreservationapplication.services.ReservationService;
@@ -12,18 +16,81 @@ import org.loose.fis.sre.hotelreservationapplication.services.ReservationService
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class WaitingReservationsController {
+
+    @FXML
+    private Label Message;
+
+    @FXML
+    private Button acceptButton;
+
+    @FXML
+    private Button rejectButton;
+
+    @FXML
+    private ComboBox reservationID;
+
+    @FXML
+    private GridPane grid;
+
+    @FXML
+    void handleAccept() {
+        try{
+            if(reservationID.getValue() == null){
+                Message.setTextFill(Color.RED);
+                Message.setText("Select an ID!");
+            }else{
+                ReservationService.acceptReservation((Integer) reservationID.getValue());
+                Message.setTextFill(Color.GREEN);
+                Message.setText("Accepted!");
+            }
+        }catch(SQLException e){
+            Message.setTextFill(Color.RED);
+            Message.setText("Something went wrong!");
+        }
+    }
+
+    @FXML
+    void handleReject() {
+        try{
+            if(reservationID.getValue() == null){
+                Message.setTextFill(Color.RED);
+                Message.setText("Select an ID!");
+            }else{
+                ReservationService.rejectReservation((Integer) reservationID.getValue());
+                Message.setTextFill(Color.GREEN);
+                Message.setText("Rejected!");
+            }
+        }catch(SQLException e){
+            Message.setTextFill(Color.RED);
+            Message.setText("Something went wrong!");
+        }
+    }
+
     @FXML
     public void goBack(){
         Main.changeToScene("reservations.fxml");
     }
 
     @FXML
-    private GridPane grid;
-
-    @FXML
     public void initialize() {
+
+        try{
+            ArrayList<Integer> waitingIDS = ReservationService.getWaitingReservationsID();
+            if(waitingIDS.isEmpty()) {
+                reservationID.getItems().clear();
+                reservationID.setPromptText("No waiting reservations");
+                acceptButton.setVisible(false);
+                rejectButton.setVisible(false);
+
+            } else {
+                reservationID.getItems().addAll(waitingIDS);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
 
         try{
             ResultSet reservations = ReservationService.getWaitingReservations();

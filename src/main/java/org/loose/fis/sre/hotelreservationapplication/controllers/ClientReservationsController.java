@@ -41,6 +41,7 @@ public class ClientReservationsController {
                 Reservation reservation = new Reservation();
                 reservation.setStartDate(reservations.getDate(3));
                 reservation.setEndDate(reservations.getDate(4));
+                reservation.setStatus(reservations.getString(5));
                 reservation.setType(reservations.getString(6));
                 reservation.setExtraBed(reservations.getBoolean(7));
                 reservation.setBreakfast(reservations.getBoolean(8));

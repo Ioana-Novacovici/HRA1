@@ -185,4 +185,29 @@ public class ReservationService {
         statement.executeUpdate();
     }
 
+    public static ArrayList<Integer> getWaitingReservationsID() throws SQLException{
+        ArrayList<Integer> waitingIDs = new ArrayList<>();
+        ResultSet waitingRes = ReservationService.getWaitingReservations();
+        while(waitingRes.next()) {
+            waitingIDs.add(waitingRes.getInt(1));
+        }
+        return waitingIDs;
+    }
+
+    public static void acceptReservation(Integer ReservationID) throws SQLException {
+
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("UPDATE reservations SET status = 'accepted' WHERE idReservation=? ");
+        statement.setInt(1, ReservationID);
+        statement.executeUpdate();
+    }
+
+    public static void rejectReservation(Integer ReservationID) throws SQLException {
+
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("UPDATE reservations SET status = 'rejected' WHERE idReservation=? ");
+        statement.setInt(1, ReservationID);
+        statement.executeUpdate();
+    }
+
 }
