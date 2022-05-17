@@ -3,6 +3,7 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.loose.fis.sre.hotelreservationapplication.Main;
@@ -14,6 +15,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class WaitingReservationsController {
+
+    @FXML
+    private ComboBox reservationID;
+
+
+    @FXML
+    void handleAccept() {
+
+    }
+
+    @FXML
+    void handleReject() {
+
+    }
+
     @FXML
     public void goBack(){
         Main.changeToScene("reservations.fxml");
