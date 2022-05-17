@@ -62,7 +62,7 @@ public class PastReservationsController {
             ArrayList<Integer> pastIDS = ReservationService.getPastReservationsID();
             if(pastIDS.isEmpty()) {
                 reservationID.getItems().clear();
-                reservationID.setPromptText("No past reservations");
+                reservationID.setPromptText("No past reservations!");
                 deleteButton.setVisible(false);
             } else {
                 reservationID.getItems().addAll(pastIDS);
