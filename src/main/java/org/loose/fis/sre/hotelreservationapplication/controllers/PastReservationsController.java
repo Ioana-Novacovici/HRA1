@@ -3,6 +3,10 @@ package org.loose.fis.sre.hotelreservationapplication.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.loose.fis.sre.hotelreservationapplication.Main;
@@ -15,12 +19,30 @@ import java.sql.SQLException;
 
 public class PastReservationsController {
     @FXML
+    private Label Message;
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private GridPane grid;
+
+    @FXML
+    private ComboBox reservationID;
+
+    @FXML
+    private ScrollPane scroll;
+
+    @FXML
+    void handleDelete() {
+
+    }
+
+    @FXML
     public void goBack(){
         Main.changeToScene("reservations.fxml");
     }
 
-    @FXML
-    private GridPane grid;
 
     @FXML
     public void initialize() {
