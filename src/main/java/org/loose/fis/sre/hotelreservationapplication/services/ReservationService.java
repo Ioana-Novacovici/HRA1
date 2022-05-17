@@ -119,7 +119,7 @@ public class ReservationService {
 
         LocalDate today = LocalDate.now();
         PreparedStatement statement;
-        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE status = 'waiting' AND startDate > ?");
+        statement = DBConnection.connection.prepareStatement("SELECT * from reservations WHERE status = 'waiting' AND startDate >= ?");
         statement.setString(1, String.valueOf(today));
         ResultSet reservations = statement.executeQuery();
         return reservations;
@@ -206,6 +206,23 @@ public class ReservationService {
 
         PreparedStatement statement;
         statement = DBConnection.connection.prepareStatement("UPDATE reservations SET status = 'rejected' WHERE idReservation=? ");
+        statement.setInt(1, ReservationID);
+        statement.executeUpdate();
+    }
+
+    public static ArrayList<Integer> getPastReservationsID() throws SQLException{
+        ArrayList<Integer> pastIDs = new ArrayList<>();
+        ResultSet pastRes = ReservationService.getPastReservations();
+        while(pastRes.next()) {
+            pastIDs.add(pastRes.getInt(1));
+        }
+        return pastIDs;
+    }
+
+    public static void deleteReservation(Integer ReservationID) throws SQLException {
+
+        PreparedStatement statement;
+        statement = DBConnection.connection.prepareStatement("DELETE FROM reservations WHERE idReservation=? ");
         statement.setInt(1, ReservationID);
         statement.executeUpdate();
     }

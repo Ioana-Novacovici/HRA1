@@ -81,7 +81,7 @@ public class WaitingReservationsController {
             ArrayList<Integer> waitingIDS = ReservationService.getWaitingReservationsID();
             if(waitingIDS.isEmpty()) {
                 reservationID.getItems().clear();
-                reservationID.setPromptText("No waiting reservations");
+                reservationID.setPromptText("No waiting reservations!");
                 acceptButton.setVisible(false);
                 rejectButton.setVisible(false);
 
