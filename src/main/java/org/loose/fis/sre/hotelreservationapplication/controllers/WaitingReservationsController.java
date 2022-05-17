@@ -27,6 +27,8 @@ public class WaitingReservationsController {
     @FXML
     private ComboBox reservationID;
 
+    @FXML
+    private GridPane grid;
 
     @FXML
     void handleAccept() {
@@ -42,9 +44,6 @@ public class WaitingReservationsController {
     public void goBack(){
         Main.changeToScene("reservations.fxml");
     }
-
-    @FXML
-    private GridPane grid;
 
     @FXML
     public void initialize() {
