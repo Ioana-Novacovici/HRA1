@@ -7,11 +7,11 @@ public class DBConnection {
 
     public static Connection connection;
 
-    public static void connect(){
+    public static void connect(String DBpath){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/hoteladministration", "hotel", "parola"
+                    DBpath, "hotel", "parola"
             );
         } catch (Exception e) {
             System.out.println(e);
