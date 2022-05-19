@@ -41,7 +41,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        DBConnection.connect();
+        DBConnection.connect("jdbc:mysql://localhost:3306/hoteladministration");
         launch();
         DBConnection.close();
     }
