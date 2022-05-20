@@ -1,0 +1,7 @@
+org\loose\fis\sre\hotelreservationapplication\models\UserTest.class
+org\loose\fis\sre\hotelreservationapplication\models\ReservationTest.class
+org\loose\fis\sre\hotelreservationapplication\controllers\RegisterControllerTest.class
+org\loose\fis\sre\hotelreservationapplication\services\UserServiceTest.class
+org\loose\fis\sre\hotelreservationapplication\services\RoomServiceTest.class
+org\loose\fis\sre\hotelreservationapplication\models\RoomTest.class
+org\loose\fis\sre\hotelreservationapplication\database\DBConnectionTest.class
