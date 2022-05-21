@@ -1,0 +1,4 @@
+--patch-module
+org.loose.fis.sre.hotelreservationapplication=_
+--add-reads
+org.loose.fis.sre.hotelreservationapplication=ALL-UNNAMED
