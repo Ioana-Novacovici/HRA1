@@ -244,7 +244,7 @@ public class ReservationServiceTest {
 
     @Test
     void deleteReservationTest() throws SQLException{
-        Date date1 = new Date(2035, 10, 12);
+        Date date1 = new Date(2035, 10, 11);
         Date date2 = new Date(2035, 12, 12);
         ReservationService.addReservation("ioana", date1, date2, "waiting", "Single Room", true, true, true, 500);
         ResultSet reservation = ReservationService.getFutureReservations();
